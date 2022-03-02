@@ -1,6 +1,13 @@
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
+const csvjson = require('csvjson');
+const createReadStream = fs.createReadStream;
+const createWriteStream = fs.createWriteStream;
+
+
+
+
 
 
 let server = http.createServer((req, res) => {
@@ -38,7 +45,18 @@ function getHandler(req, res) {
                 res.end(data);
             })
             break;
-
+        case '/csv':
+            fs.readFile('./data.csv', 'utf-8', (err, data) => {
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                const toObject = csvjson.stream.toObject();
+                const stringify = csvjson.stream.stringify();
+                createReadStream('./data.csv', 'utf-8')
+                .pipe(toObject)
+                .pipe(stringify)
+                .pipe(createWriteStream('./output.json'));
+                res.end('done');
+            })
+            break;
         default:
             break;
     }

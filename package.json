@@ -1,0 +1,23 @@
+{
+  "name": "http-protocol",
+  "version": "1.0.0",
+  "description": "A demonstration to make a strong depth understanding in HTTP",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NooRAl-Deen/http-protocol.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NooRAl-Deen/http-protocol/issues"
+  },
+  "homepage": "https://github.com/NooRAl-Deen/http-protocol#readme",
+  "dependencies": {
+    "csvjson": "^5.1.0"
+  }
+}
