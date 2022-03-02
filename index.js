@@ -39,9 +39,28 @@ function getHandler(req, res) {
             })
             break;
 
+            case '/csv'://read csv filr then convert to json
+            fs.readFile('./data.csv', (error, content) => {
+                let csv = content.toString();
+                let lines = csv.split('\n');
+                let json = [];
+                lines.forEach(line => {
+                    let row = line.split(',');
+                    let obj = {
+                        alphapet: row[0],
+                        numbers: row[1]
+                    }
+                    json.push(obj);
+                })
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify(json), 'utf-8');
+            })
+
+            break;
         default:
             break;
-    }
+    
+}
 }
 
 server.listen(6200, () => {
