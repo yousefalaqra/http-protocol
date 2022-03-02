@@ -39,24 +39,48 @@ function getHandler(req, res) {
             })
             break;
 
-            case '/csv'://read csv filr then convert to json
-            fs.readFile('./data.csv', (error, content) => {
+            case '/csv':
+            fs.readFile('./csv/data.csv', (error, content) => {
                 let csv = content.toString();
+                
                 let lines = csv.split('\n');
-                let json = [];
-                lines.forEach(line => {
-                    let row = line.split(',');
-                    let obj = {
-                        alphapet: row[0],
-                        numbers: row[1]
+                let headers = lines[0].split(',');
+                let jsonObj = [];
+                for (let i = 1; i < lines.length; i++) {
+                    let obj = {};
+                    let currentline = lines[i].split(',');
+                    for (let j = 0; j < headers.length; j++) {
+                        obj[headers[j]] = currentline[j];
                     }
-                    json.push(obj);
-                })
+                    jsonObj.push(obj);
+                }
                 res.writeHead(200, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify(json), 'utf-8');
+                res.end(JSON.stringify(jsonObj), 'utf-8');
+            })
+                
+            break;
+
+            case '/sql':
+            fs.readFile('./sql/data.sql', (error, content) => {
+                let sql = content.toString();
+                let lines = sql.split('\n');
+                console.log(lines.length);
+                let headers = lines[0].split(' ');
+                console.log(headers);
+                let jsonObj = [];
+
+                for (let i = 1; i < lines.length; i++) {
+                    let obj = {};
+                    let currentline = lines[i].split(' ');
+                    for (let j = 0; j < headers.length; j++) {
+                        obj[headers[j]] = currentline[j];
+                    }
+                    jsonObj.push(obj);
+                }
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify(jsonObj), 'utf-8');
             })
 
-            break;
         default:
             break;
     
