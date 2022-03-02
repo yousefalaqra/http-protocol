@@ -31,6 +31,13 @@ function getHandler(req, res) {
             })
 
             break;
+        case '/random':
+            const image = './img.jpg';
+            fs.readFile(image ,(err, data) => {
+                res.writeHead(200, {'Content-Type': 'image/jpeg'});
+                res.end(data);
+            })
+            break;
 
         default:
             break;
