@@ -66,4 +66,29 @@ Maybe you wounder now how to create *pull-request*, so let's create an scenario 
 
 # @JoAqra decided to work in task number *1*: **Return `html` resource for route `/` and for `GET`**
 
+## First thing first, jo will clone the repository from github 
+```
+git clone https://github.com/yousefalaqra/http-protocol.git
+```
+## navigate to the repository folder & run
+```
+npm install
+``` 
+
+## create and checkout to new branch 
+```
+git checkout -b test-1-jo
+```
+
+*-b tells git to create new branch, while the `task-1-jo` is the name of the branch*
+
+## after creating the branch jo starts to add his code in the server
+ [Check jo's file modifications in his `pull-request`]()
+
+## Jo makes sure everything is running as expected and then to commit the changes
+```
+git add .
+git commit -m 'task #1, return html file on GET'
+``` 
+
 
