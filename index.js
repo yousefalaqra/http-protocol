@@ -60,25 +60,19 @@ function getHandler(req, res) {
                 
             break;
 
-            case '/sql':
-            fs.readFile('./sql/data.sql', (error, content) => {
-                let sql = content.toString();
-                let lines = sql.split('\n');
-                console.log(lines.length);
-                let headers = lines[0].split(' ');
-                console.log(headers);
-                let jsonObj = [];
-
-                for (let i = 1; i < lines.length; i++) {
-                    let obj = {};
-                    let currentline = lines[i].split(' ');
-                    for (let j = 0; j < headers.length; j++) {
-                        obj[headers[j]] = currentline[j];
-                    }
-                    jsonObj.push(obj);
-                }
+            case '/sql': // get data from sql database and convert to json
+            let sql = require('mysql');
+            let con = sql.createConnection({
+                host: "localhost",
+                user: "root",
+                password: "",
+                database: "register"
+            });
+            let sqlQuery = "SELECT * FROM users";
+            con.query(sqlQuery, (err, result) => {
+                if (err) throw err;
                 res.writeHead(200, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify(jsonObj), 'utf-8');
+                res.end(JSON.stringify(result), 'utf-8');
             })
 
         default:
