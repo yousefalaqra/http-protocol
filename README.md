@@ -51,7 +51,7 @@ server.listen(6200, () => {
 # Now let's the fun to begin!
 
 ## Make the required modifications in order to achieve the following
-1. Return `html` resource for route `/` and for `GET` | 3 points 
+1. ~~Return `html` resource for route `/` and for `GET` | 3 points  |  completed by jo~~
 2. Return `img` resource for route `/random` and for `GET` | 3 points
 3. Return `json` resource *from csv file db source* | 6 points 
 4. Return `json` resource *from sql db source* | 12 points
@@ -64,31 +64,6 @@ server.listen(6200, () => {
 
 Maybe you wounder now how to create *pull-request*, so let's create an scenario example:
 
-# @JoAqra decided to work in task number *1*: **Return `html` resource for route `/` and for `GET`**
-
-## First thing first, jo will clone the repository from github 
-```
-git clone https://github.com/yousefalaqra/http-protocol.git
-```
-## navigate to the repository folder & run
-```
-npm install
-``` 
-
-## create and checkout to new branch 
-```
-git checkout -b test-1-jo
-```
-
-*-b tells git to create new branch, while the `task-1-jo` is the name of the branch*
-
-## after creating the branch jo starts to add his code in the server
- [Check jo's file modifications in his `pull-request`]()
-
-## Jo makes sure everything is running as expected and then to commit the changes
-```
-git add .
-git commit -m 'task #1, return html file on GET'
-``` 
+[Refer to this link if you have no idea how to about the process of creating a pull-request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
 
 
