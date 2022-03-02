@@ -24,19 +24,38 @@ function getHandler(req, res) {
     let requestedUrl = req.url;
 
     switch (requestedUrl) {
-        case '/':
-            fs.readFile('./templates/jo.html', (error, content) => {
-                res.writeHead(200, { 'Content-Type': 'text/html' });
-                res.end(content, 'utf-8');
+        case '/random':
+            fs.readFile("black.jpg", function(err, data) {
+                if (err) throw err
+                http.createServer(function(req, res) {
+                    res.writeHead(200, { 'Content-Type': 'image/jpeg' })
+                    res.end(data)
+                })
             })
-
+            break;
+        case '/csv':
+            fs.readFile("C1.csv", function(err, data) {
+                if (err) throw err
+                http.createServer(function(req, res) {
+                    res.writeHead(200, { 'Content-Type': 'text/csv' })
+                    res.end(data)
+                })
+            })
+            break;
+        case '/json':
+            fs.readFile("package.json", function(err, data) {
+                if (err) throw err
+                http.createServer(function(req, res) {
+                    res.writeHead(200), { "Content-Type": "application/json" };
+                    res.end(data);
+                })
+            })
             break;
 
         default:
             break;
     }
 }
-
-server.listen(6200, () => {
-    console.log('Server is running over http://localhost:6200')
+server.listen(8000, () => {
+    console.log('Server is running over http://localhost:8000')
 })
